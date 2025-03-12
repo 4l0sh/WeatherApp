@@ -1,0 +1,116 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: white;
+}
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  margin-top: 0px;
+  background: rgb(0, 3, 131);
+  background: linear-gradient(
+    303deg,
+    rgba(0, 3, 131, 0.9456233176864496) 0%,
+    rgb(72, 35, 131) 100%
+  );
+  gap: 10px;
+}
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 15vh;
+  border: 1px solid white;
+  box-sizing: border-box;
+  padding: 5px;
+}
+.location {
+  font-weight: 800;
+  font-size: 90px;
+  margin: 20px;
+}
+.mainContent {
+  display: flex;
+  width: 100%;
+  border: 1px solid white;
+  box-sizing: border-box;
+  padding: 5px;
+  height: 65vh;
+  justify-content: center;
+  align-items: center;
+}
+.currentWeather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 50vh;
+  gap: 20px;
+}
+.currentWeather h1 {
+  font-size: 50px;
+}
+.currentWeatherIcon {
+  width: 400px;
+  height: 400px;
+}
+.temp {
+  font-size: 240px;
+  margin: 0px;
+  margin-left: 50px;
+}
+.Hourly {
+  display: flex;
+  justify-content: center;
+  height: 20vh;
+  border: 1px solid white;
+  box-sizing: border-box;
+  padding: 5px;
+  position: relative;
+  overflow: hidden;
+}
+.hoursCardsContainer {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-x: auto;
+  direction: ltr;
+  scroll-behavior: smooth;
+  padding: 10px;
+}
+
+.hourCard {
+  min-width: 250px;
+  height: 300px;
+  background-color: rgba(105, 56, 197, 0.418);
+  box-sizing: border-box;
+  margin: 10px;
+  direction: ltr;
+  border-radius: 20px;
+}
+.Hourly::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(0, 3, 131, 1) 0%,
+    rgba(0, 3, 131, 0) 100%
+  );
+  pointer-events: none;
+}
