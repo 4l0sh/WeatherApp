@@ -75,9 +75,18 @@ body {
 }
 
 .temp {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 20vw;
   margin: 0px;
   text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+  margin-left: 20px;
+}
+.temperatureContainer {
+  display: flex;
+  flex-direction: row;
 }
 
 .hoursCardsContainer {
@@ -103,6 +112,11 @@ body {
   padding: 5px;
   position: relative;
   overflow: hidden;
+}
+.currentWeather h3 {
+  margin: 0px;
+  width: 100%;
+  text-align: center;
 }
 
 /* .Hourly::after {

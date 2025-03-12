@@ -6,6 +6,9 @@ import './Home.css';
 const Home = () => {
   const [currTemp, setCurrTemp] = useState(0);
   const [location, setLocation] = useState('Amsterdam');
+  const [maxTemp, setMaxTemp] = useState(0);
+  const [minTemp, setMinTemp] = useState(0);
+  const [samenv, setSamenv] = useState('');
   useEffect(() => {
     const clock = document.getElementById('clock');
     const updateClock = () => {
@@ -26,6 +29,9 @@ const Home = () => {
       response.json().then((data) => {
         setCurrTemp(data.liveweer[0].temp);
         setLocation(data.liveweer[0].plaats);
+        setMaxTemp(data.liveweer[0].max_temp);
+        setMinTemp(data.liveweer[0].mint_emp);
+        setSamenv(data.liveweer[0].samenv);
       });
     });
   }),
@@ -42,6 +48,7 @@ const Home = () => {
         <div className='mainContent'>
           <div className='currentWeather'>
             <img className='currentWeatherIcon' src={Cloud} alt='Cloud' />
+            <h3>{samenv}</h3>
             <p className='temp'>{currTemp}°</p>
           </div>
         </div>

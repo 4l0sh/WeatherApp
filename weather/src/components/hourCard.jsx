@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import Cloud from '../assets/cloudy.svg';
+import halfbewolkt from '../assets/cloud.svg';
 import './hourCard.css';
 
 const HourCard = () => {
@@ -16,7 +17,11 @@ const HourCard = () => {
             time: item.uur.substring(11),
             temp: `${item.temp}°`,
             icon: Cloud,
+            image: item.image,
           }));
+          // formattedData.forEach((item) => console.log(item.image));
+          const firstImage = formattedData[0].image;
+          console.log(firstImage);
           setHourlyData(formattedData);
         }
       })
