@@ -3,29 +3,24 @@ import Cloud from '../assets/cloudy.svg';
 import './hourCard.css';
 
 const HourCard = () => {
-  const hourlyData = [
-    { time: '12:45', temp: '4°', icon: Cloud },
-    { time: '13:45', temp: '9°', icon: Cloud },
-    { time: '14:45', temp: '10°', icon: Cloud },
-    { time: '15:45', temp: '11°', icon: Cloud },
-    { time: '16:45', temp: '12°', icon: Cloud },
-    { time: '17:45', temp: '13°', icon: Cloud },
-    { time: '18:45', temp: '14°', icon: Cloud },
-    { time: '19:45', temp: '15°', icon: Cloud },
-    { time: '20:45', temp: '16°', icon: Cloud },
-  ];
+  const [hourlyData, setHourlyData] = useState([]);
 
   useEffect(() => {
     fetch(
-      'https://weerlive.nl/api/weerlive_api_v2.php?key=demo&locatie=Amsterdam',
-      {
-        method: 'GET',
-      }
-    ).then((response) => {
-      response.json().then((data) => {
-        console.log(data.liveweer);
-      });
-    });
+      'https://weerlive.nl/api/weerlive_api_v2.php?key=demo&locatie=Amsterdam'
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.uur_verw) {
+          const formattedData = data.uur_verw.map((item) => ({
+            time: item.uur.substring(11),
+            temp: `${item.temp}°`,
+            icon: Cloud,
+          }));
+          setHourlyData(formattedData);
+        }
+      })
+      .catch((error) => console.error('Error fetching weather data:', error));
   }, []);
 
   return (

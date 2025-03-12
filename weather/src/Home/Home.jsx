@@ -5,6 +5,7 @@ import './Home.css';
 
 const Home = () => {
   const [currTemp, setCurrTemp] = useState(0);
+  const [location, setLocation] = useState('Amsterdam');
   useEffect(() => {
     const clock = document.getElementById('clock');
     const updateClock = () => {
@@ -24,6 +25,7 @@ const Home = () => {
     ).then((response) => {
       response.json().then((data) => {
         setCurrTemp(data.liveweer[0].temp);
+        setLocation(data.liveweer[0].plaats);
       });
     });
   }),
@@ -32,7 +34,7 @@ const Home = () => {
     <Fragment>
       <div className='homeContainer'>
         <div className='topBar'>
-          <h1 className='location'>📌 Location</h1>
+          <h1 className='location'>📌 {location}</h1>
           <h1 className='location' id='clock'>
             11:30
           </h1>
