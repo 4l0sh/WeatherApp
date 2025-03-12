@@ -1,0 +1,19 @@
+.hourCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 100px;
+  height: 150px;
+  background: rgba(58, 12, 163, 0.6);
+  box-sizing: border-box;
+  margin: 10px;
+  direction: ltr;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+.hourCard p,
+.hourCard h2 {
+  margin: 0px;
+}
