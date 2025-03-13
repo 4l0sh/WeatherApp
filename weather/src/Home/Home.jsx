@@ -27,12 +27,13 @@ const Home = () => {
   const [location, setLocation] = useState('Amsterdam');
   const [samenv, setSamenv] = useState('');
   const [image, setImage] = useState(Cloudy);
-  const [isLocated, setIsLocated] = useState(false);
+  // const [isLocated, setIsLocated] = useState(false);
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
 
   useEffect(() => {
     const clock = document.getElementById('clock');
+    getLocation();
     const updateClock = () => {
       const time = new Date();
       const hours = time.getHours();
@@ -69,7 +70,7 @@ const Home = () => {
         'Longitude is : ',
         userLongtitude.current
       );
-      setIsLocated(true);
+      // setIsLocated(true);
     });
   };
   return (
@@ -82,12 +83,6 @@ const Home = () => {
           </h1>
         </div>
         <div className='mainContent'>
-          {isLocated ? null : (
-            <div className='getLocation'>
-              <h1>Give Premission to get Location</h1>
-              <button onClick={getLocation}>Get Location</button>
-            </div>
-          )}
           <div className='currentWeather'>
             <img className='currentWeatherIcon' src={image} alt='Cloud' />
             <h3>{samenv}</h3>
