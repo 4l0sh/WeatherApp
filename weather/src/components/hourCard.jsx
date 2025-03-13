@@ -3,12 +3,12 @@ import { imageMap } from '../Home/Home';
 
 import './hourCard.css';
 
-const HourCard = () => {
+const HourCard = ({ latitude, longtitude }) => {
   const [hourlyData, setHourlyData] = useState([]);
 
   useEffect(() => {
     fetch(
-      `https://weerlive.nl/api/weerlive_api_v2.php?key=${import.meta.env.VITE_WEATHER_APP_API_KEY}&locatie=Amsterdam`
+      `https://weerlive.nl/api/weerlive_api_v2.php?key=${import.meta.env.VITE_WEATHER_APP_API_KEY}&locatie=${latitude},${longtitude}`
     )
       .then((response) => response.json())
       .then((data) => {
