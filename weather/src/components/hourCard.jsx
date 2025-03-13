@@ -1,16 +1,14 @@
 import { Fragment, useEffect, useState } from 'react';
 import { imageMap } from '../Home/Home';
-import Cloud from '../assets/lightCloudy.svg';
 
 import './hourCard.css';
 
 const HourCard = () => {
   const [hourlyData, setHourlyData] = useState([]);
-  const [image, setImage] = useState(Cloud);
 
   useEffect(() => {
     fetch(
-      'https://weerlive.nl/api/weerlive_api_v2.php?key=demo&locatie=Amsterdam'
+      `https://weerlive.nl/api/weerlive_api_v2.php?key=${import.meta.env.VITE_WEATHER_APP_API_KEY}&locatie=Amsterdam`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -21,7 +19,7 @@ const HourCard = () => {
             icon: imageMap[item.image],
             image: item.image,
           }));
-          formattedData.forEach((item) => console.log(item.image));
+          // formattedData.forEach((item) => console.log(item.image));
           setHourlyData(formattedData);
         }
       })

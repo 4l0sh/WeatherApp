@@ -40,7 +40,7 @@ const Home = () => {
     setInterval(updateClock, 1000);
 
     fetch(
-      'https://weerlive.nl/api/weerlive_api_v2.php?key=demo&locatie=Amsterdam',
+      `https://weerlive.nl/api/weerlive_api_v2.php?key=${import.meta.env.VITE_WEATHER_APP_API_KEY}&locatie=Amsterdam`,
       {
         method: 'GET',
       }
