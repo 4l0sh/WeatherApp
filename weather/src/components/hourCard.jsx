@@ -19,8 +19,9 @@ const HourCard = () => {
             time: item.uur.substring(11),
             temp: `${item.temp}°`,
             icon: imageMap[item.image],
+            image: item.image,
           }));
-          // formattedData.forEach((item) => console.log(item.image));
+          formattedData.forEach((item) => console.log(item.image));
           setHourlyData(formattedData);
         }
       })

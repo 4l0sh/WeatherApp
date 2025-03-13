@@ -15,7 +15,7 @@ export const imageMap = {
   zonnig: Day,
   regen: Rain,
   sneeuw: Snow,
-  heldernacht: Night,
+  helderenacht: Night,
   halfbewolkt: SlightlyCloudy,
   bewolkt: Cloudy,
   zwaarbewolkt: Cloudy,
