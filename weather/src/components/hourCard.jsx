@@ -1,10 +1,12 @@
 import { Fragment, useEffect, useState } from 'react';
-import Cloud from '../assets/cloudy.svg';
-import halfbewolkt from '../assets/cloud.svg';
+import { imageMap } from '../Home/Home';
+import Cloud from '../assets/lightCloudy.svg';
+
 import './hourCard.css';
 
 const HourCard = () => {
   const [hourlyData, setHourlyData] = useState([]);
+  const [image, setImage] = useState(Cloud);
 
   useEffect(() => {
     fetch(
@@ -16,12 +18,9 @@ const HourCard = () => {
           const formattedData = data.uur_verw.map((item) => ({
             time: item.uur.substring(11),
             temp: `${item.temp}°`,
-            icon: Cloud,
-            image: item.image,
+            icon: imageMap[item.image],
           }));
           // formattedData.forEach((item) => console.log(item.image));
-          const firstImage = formattedData[0].image;
-          console.log(firstImage);
           setHourlyData(formattedData);
         }
       })

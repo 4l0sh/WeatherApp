@@ -1,14 +1,33 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import Cloud from '../assets/cloudy.svg';
+import Cloudy from '../assets/cloudy.svg';
+import SlightlyCloudy from '../assets/lightCloudy.svg';
+import CloudyDay from '../assets/cloudy-day-3.svg';
+import CloudyNight from '../assets/cloudy-night-3.svg';
+import Day from '../assets/day.svg';
+import Night from '../assets/night.svg';
+import Rain from '../assets/rainy-3.svg';
+import Snow from '../assets/snowy-1.svg';
 import HourCard from '../components/hourCard';
 import './Home.css';
+
+export const imageMap = {
+  lichtbewolkt: CloudyDay,
+  zonnig: Day,
+  regen: Rain,
+  sneeuw: Snow,
+  heldernacht: Night,
+  halfbewolkt: SlightlyCloudy,
+  bewolkt: Cloudy,
+  zwaarbewolkt: Cloudy,
+  nachtbewolkt: CloudyNight,
+};
 
 const Home = () => {
   const [currTemp, setCurrTemp] = useState(0);
   const [location, setLocation] = useState('Amsterdam');
-  const [maxTemp, setMaxTemp] = useState(0);
-  const [minTemp, setMinTemp] = useState(0);
   const [samenv, setSamenv] = useState('');
+  const [image, setImage] = useState(Cloudy);
+
   useEffect(() => {
     const clock = document.getElementById('clock');
     const updateClock = () => {
@@ -29,9 +48,8 @@ const Home = () => {
       response.json().then((data) => {
         setCurrTemp(data.liveweer[0].temp);
         setLocation(data.liveweer[0].plaats);
-        setMaxTemp(data.liveweer[0].max_temp);
-        setMinTemp(data.liveweer[0].mint_emp);
         setSamenv(data.liveweer[0].samenv);
+        setImage(imageMap[data.liveweer[0].image]);
       });
     });
   }),
@@ -47,7 +65,7 @@ const Home = () => {
         </div>
         <div className='mainContent'>
           <div className='currentWeather'>
-            <img className='currentWeatherIcon' src={Cloud} alt='Cloud' />
+            <img className='currentWeatherIcon' src={image} alt='Cloud' />
             <h3>{samenv}</h3>
             <p className='temp'>{currTemp}°</p>
           </div>
