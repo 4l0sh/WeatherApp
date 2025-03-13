@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import Cloudy from '../assets/cloudy.svg';
 import SlightlyCloudy from '../assets/lightCloudy.svg';
 import CloudyDay from '../assets/cloudy-day-3.svg';
@@ -27,6 +27,9 @@ const Home = () => {
   const [location, setLocation] = useState('Amsterdam');
   const [samenv, setSamenv] = useState('');
   const [image, setImage] = useState(Cloudy);
+  const [isLocated, setIsLocated] = useState(false);
+  const userLatitude = useRef(0);
+  const userLongtitude = useRef(0);
 
   useEffect(() => {
     const clock = document.getElementById('clock');
@@ -40,7 +43,7 @@ const Home = () => {
     setInterval(updateClock, 1000);
 
     fetch(
-      `https://weerlive.nl/api/weerlive_api_v2.php?key=${import.meta.env.VITE_WEATHER_APP_API_KEY}&locatie=Amsterdam`,
+      `https://weerlive.nl/api/weerlive_api_v2.php?key=${import.meta.env.VITE_WEATHER_APP_API_KEY}&locatie=${userLatitude.current},${userLongtitude.current}`,
       {
         method: 'GET',
       }
@@ -54,6 +57,21 @@ const Home = () => {
     });
   }),
     [];
+
+  const getLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      userLatitude.current = position.coords.latitude;
+      userLongtitude.current = position.coords.longitude;
+
+      console.log(
+        'Latitude is : ',
+        userLatitude.current,
+        'Longitude is : ',
+        userLongtitude.current
+      );
+      setIsLocated(true);
+    });
+  };
   return (
     <Fragment>
       <div className='homeContainer'>
@@ -64,6 +82,12 @@ const Home = () => {
           </h1>
         </div>
         <div className='mainContent'>
+          {isLocated ? null : (
+            <div className='getLocation'>
+              <h1>Give Premission to get Location</h1>
+              <button onClick={getLocation}>Get Location</button>
+            </div>
+          )}
           <div className='currentWeather'>
             <img className='currentWeatherIcon' src={image} alt='Cloud' />
             <h3>{samenv}</h3>
