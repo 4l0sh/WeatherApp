@@ -23,7 +23,7 @@ const HourCard = ({ latitude, longtitude }) => {
 
           if (data && data.wk_verw) {
             const formattedWeekData = data.wk_verw.map((item) => ({
-              day: item.dag,
+              day: item.dag.substring(0, 5),
               tempMax: item.max_temp,
               tempMin: item.min_temp,
               icon: imageMap[item.image],
@@ -55,8 +55,14 @@ const HourCard = ({ latitude, longtitude }) => {
               <div className='hourCard' key={index}>
                 <p>{data.day}</p>
                 <img src={data.icon} alt='Weather Icon' />
-                <h2>{data.tempMax}°</h2>
-                <h2>{data.tempMin}°</h2>
+                <div className='minMax'>
+                  <p>max</p>
+                  <h2>{data.tempMax}°</h2>
+                </div>
+                <div className='minMax'>
+                  <p>min</p>
+                  <h2>{data.tempMin}°</h2>
+                </div>
               </div>
             ))}
           </div>

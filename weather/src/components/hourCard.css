@@ -27,3 +27,15 @@
   flex-direction: row;
   justify-content: center;
 }
+.minMax {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.minMax p {
+  margin-right: 5px;
+}
+.minMax h2 {
+  margin-left: 5px;
+}

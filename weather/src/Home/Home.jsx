@@ -31,6 +31,7 @@ const Home = () => {
   const [sunRise, setSunRise] = useState('');
   const [sunSet, setSunSet] = useState('');
   const [verw, setVerw] = useState('');
+  const [wind, setWind] = useState('');
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
 
@@ -60,22 +61,42 @@ const Home = () => {
         setSunSet(data.liveweer[0].sunder);
         setImage(imageMap[data.liveweer[0].image]);
         setVerw(data.liveweer[0].verw);
+        setWind(data.liveweer[0].windkmh);
       });
     });
-  }),
-    [];
+
+    const hoursCardsContainer = document.querySelector('.hoursCardsContainer');
+    if (hoursCardsContainer) {
+      hoursCardsContainer.addEventListener('wheel', (event) => {
+        if (event.deltaY !== 0) {
+          event.preventDefault();
+          hoursCardsContainer.scrollBy({
+            left: event.deltaY,
+            behavior: 'smooth',
+          });
+        }
+      });
+    }
+
+    return () => {
+      if (hoursCardsContainer) {
+        hoursCardsContainer.removeEventListener('wheel', (event) => {
+          if (event.deltaY !== 0) {
+            event.preventDefault();
+            hoursCardsContainer.scrollBy({
+              left: event.deltaY,
+              behavior: 'smooth',
+            });
+          }
+        });
+      }
+    };
+  }, []);
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       userLatitude.current = position.coords.latitude;
       userLongtitude.current = position.coords.longitude;
-
-      // console.log(
-      //   'Latitude is : ',
-      //   userLatitude.current,
-      //   'Longitude is : ',
-      //   userLongtitude.current
-      // );
     });
   };
   return (
@@ -92,7 +113,8 @@ const Home = () => {
             <img className='currentWeatherIcon' src={image} alt='Cloud' />
 
             <h3>{samenv}</h3>
-            <p className='temp'>{currTemp}°</p>
+            <h3> 💨 {wind} KMh</h3>
+            <p className='temp'>{currTemp}° </p>
           </div>
         </div>
         <div className='Hourly'>
