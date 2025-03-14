@@ -34,6 +34,7 @@ const Home = () => {
   const [wind, setWind] = useState('');
   const [message, setMessage] = useState('');
   const [alarm, setAlarm] = useState('');
+  const [visibility, setVisibility] = useState('');
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
 
@@ -66,6 +67,7 @@ const Home = () => {
         setWind(data.liveweer[0].windkmh);
         setMessage(data.liveweer[0].ltekst);
         setAlarm(data.liveweer[0].alarm);
+        setVisibility(data.liveweer[0].zicht);
       });
     });
 
@@ -145,6 +147,9 @@ const Home = () => {
         <div className='verwContainer'>
           <h2>{alarm}</h2>
           <p>{message}</p>
+        </div>
+        <div className='verwContainer'>
+          <h2>Visibility : {Number(visibility).toLocaleString()} Km</h2>
         </div>
       </div>
     </Fragment>
