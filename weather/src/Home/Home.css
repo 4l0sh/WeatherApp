@@ -179,12 +179,18 @@ body {
   display: flex;
   width: 80%;
   justify-content: center;
+  align-items: center;
+  gap: 5px;
   align-self: center;
   height: auto;
   background: rgba(58, 12, 163, 0.6);
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   text-align: center;
+  margin-bottom: 10px;
+}
+.verwContainer h2 {
+  margin-left: 10px;
 }
 
 @media (min-width: 768px) {
@@ -249,6 +255,7 @@ body {
   }
 
   .verwContainer {
+    margin-top: 20px;
     width: 70%;
     padding: 20px;
   }
@@ -315,6 +322,7 @@ body {
   }
 
   .verwContainer {
+    margin-top: 70px;
     width: 60%;
     padding: 40px;
   }

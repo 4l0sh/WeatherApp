@@ -32,6 +32,8 @@ const Home = () => {
   const [sunSet, setSunSet] = useState('');
   const [verw, setVerw] = useState('');
   const [wind, setWind] = useState('');
+  const [message, setMessage] = useState('');
+  const [alarm, setAlarm] = useState('');
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
 
@@ -62,6 +64,8 @@ const Home = () => {
         setImage(imageMap[data.liveweer[0].image]);
         setVerw(data.liveweer[0].verw);
         setWind(data.liveweer[0].windkmh);
+        setMessage(data.liveweer[0].ltekst);
+        setAlarm(data.liveweer[0].alarm);
       });
     });
 
@@ -125,6 +129,7 @@ const Home = () => {
         <div className='verwContainer'>
           <p>{verw}</p>
         </div>
+
         <div className='sunInfoContainer'>
           <div className='sunrise'>
             <h1>☀️</h1>
@@ -136,6 +141,10 @@ const Home = () => {
             <h3>Sunset</h3>
             <h1>{sunSet}</h1>
           </div>
+        </div>
+        <div className='verwContainer'>
+          <h2>{alarm}</h2>
+          <p>{message}</p>
         </div>
       </div>
     </Fragment>
