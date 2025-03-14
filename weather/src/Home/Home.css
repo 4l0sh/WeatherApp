@@ -88,30 +88,32 @@ body {
   display: flex;
   flex-direction: row;
 }
+.Hourly {
+  display: flex;
+  justify-content: center;
+  height: auto; /* Allow it to expand naturally */
+  box-sizing: border-box;
+  padding: 5px;
+  position: relative;
+  overflow: visible; /* No scrolling inside */
+}
 
 .hoursCardsContainer {
   display: flex;
   width: 100vw;
-  height: 100%;
+  height: auto; /* Let it expand as needed */
   flex-direction: row;
   align-items: center;
   box-sizing: border-box;
-  overflow-x: auto;
+  overflow-x: auto; /* Allow horizontal scrolling */
   direction: ltr;
   scroll-behavior: smooth;
-  overflow-y: hidden;
   padding: 10px;
 }
 
-.Hourly {
-  display: flex;
-  justify-content: center;
-  height: 27%;
-  overflow-y: hidden;
-  box-sizing: border-box;
-  padding: 5px;
-  position: relative;
-  overflow: hidden;
+.homeContainer {
+  height: auto; /* Make sure the container doesn't restrict height */
+  min-height: 100vh; /* Ensures it extends */
 }
 .currentWeather h3 {
   margin: 0px;

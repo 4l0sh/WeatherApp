@@ -5,6 +5,7 @@ import './hourCard.css';
 
 const HourCard = ({ latitude, longtitude }) => {
   const [hourlyData, setHourlyData] = useState([]);
+  const [weekData, setWeekData] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -19,6 +20,16 @@ const HourCard = ({ latitude, longtitude }) => {
             icon: imageMap[item.image],
             image: item.image,
           }));
+
+          if (data && data.wk_verw) {
+            const formattedWeekData = data.wk_verw.map((item) => ({
+              day: item.dag,
+              tempMax: item.max_temp,
+              tempMin: item.min_temp,
+              icon: imageMap[item.image],
+            }));
+            setWeekData(formattedWeekData);
+          }
           // formattedData.forEach((item) => console.log(item.image));
           setHourlyData(formattedData);
         }
@@ -28,13 +39,29 @@ const HourCard = ({ latitude, longtitude }) => {
 
   return (
     <Fragment>
-      {hourlyData.map((data, index) => (
-        <div className='hourCard' key={index}>
-          <p>{data.time}</p>
-          <img src={data.icon} alt='Weather Icon' />
-          <h2>{data.temp}</h2>
+      <div className='tilesContainer'>
+        <div className='tiles'>
+          {hourlyData.map((data, index) => (
+            <div className='hourCard' key={index}>
+              <p>{data.time}</p>
+              <img src={data.icon} alt='Weather Icon' />
+              <h2>{data.temp}</h2>
+            </div>
+          ))}
         </div>
-      ))}
+        <div className='tiles'>
+          <div className='daysContainer'>
+            {weekData.map((data, index) => (
+              <div className='hourCard' key={index}>
+                <p>{data.day}</p>
+                <img src={data.icon} alt='Weather Icon' />
+                <h2>{data.tempMax}°</h2>
+                <h2>{data.tempMin}°</h2>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </Fragment>
   );
 };

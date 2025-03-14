@@ -27,7 +27,6 @@ const Home = () => {
   const [location, setLocation] = useState('Amsterdam');
   const [samenv, setSamenv] = useState('');
   const [image, setImage] = useState(Cloudy);
-  // const [isLocated, setIsLocated] = useState(false);
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
 
@@ -64,13 +63,12 @@ const Home = () => {
       userLatitude.current = position.coords.latitude;
       userLongtitude.current = position.coords.longitude;
 
-      console.log(
-        'Latitude is : ',
-        userLatitude.current,
-        'Longitude is : ',
-        userLongtitude.current
-      );
-      // setIsLocated(true);
+      // console.log(
+      //   'Latitude is : ',
+      //   userLatitude.current,
+      //   'Longitude is : ',
+      //   userLongtitude.current
+      // );
     });
   };
   return (
@@ -91,7 +89,7 @@ const Home = () => {
         </div>
         <div className='Hourly'>
           <div className='hoursCardsContainer'>
-            <HourCard />
+            <HourCard latitude={userLatitude} longtitude={userLongtitude} />
           </div>
         </div>
       </div>

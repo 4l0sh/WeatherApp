@@ -17,3 +17,13 @@
 .hourCard h2 {
   margin: 0px;
 }
+.tiles {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}
+.daysContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
