@@ -8,6 +8,7 @@ import Night from '../assets/night.svg';
 import Rain from '../assets/rainy-3.svg';
 import Snow from '../assets/snowy-1.svg';
 import HourCard from '../components/hourCard';
+
 import './Home.css';
 
 export const imageMap = {
@@ -27,6 +28,9 @@ const Home = () => {
   const [location, setLocation] = useState('Amsterdam');
   const [samenv, setSamenv] = useState('');
   const [image, setImage] = useState(Cloudy);
+  const [sunRise, setSunRise] = useState('');
+  const [sunSet, setSunSet] = useState('');
+  const [verw, setVerw] = useState('');
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
 
@@ -52,7 +56,10 @@ const Home = () => {
         setCurrTemp(data.liveweer[0].temp);
         setLocation(data.liveweer[0].plaats);
         setSamenv(data.liveweer[0].samenv);
+        setSunRise(data.liveweer[0].sup);
+        setSunSet(data.liveweer[0].sunder);
         setImage(imageMap[data.liveweer[0].image]);
+        setVerw(data.liveweer[0].verw);
       });
     });
   }),
@@ -83,6 +90,7 @@ const Home = () => {
         <div className='mainContent'>
           <div className='currentWeather'>
             <img className='currentWeatherIcon' src={image} alt='Cloud' />
+
             <h3>{samenv}</h3>
             <p className='temp'>{currTemp}°</p>
           </div>
@@ -90,6 +98,21 @@ const Home = () => {
         <div className='Hourly'>
           <div className='hoursCardsContainer'>
             <HourCard latitude={userLatitude} longtitude={userLongtitude} />
+          </div>
+        </div>
+        <div className='verwContainer'>
+          <p>{verw}</p>
+        </div>
+        <div className='sunInfoContainer'>
+          <div className='sunrise'>
+            <h1>☀️</h1>
+            <h3>Sunrise</h3>
+            <h1>{sunRise}</h1>
+          </div>
+          <div className='sunrise'>
+            <h1>🌙</h1>
+            <h3>Sunset</h3>
+            <h1>{sunSet}</h1>
           </div>
         </div>
       </div>
