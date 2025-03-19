@@ -110,7 +110,28 @@ const Home = () => {
       userLatitude.current = position.coords.latitude;
       userLongtitude.current = position.coords.longitude;
       // console.log(position.coords.latitude, position.coords.longitude);
+      getCity(position.coords.latitude, position.coords.longitude);
     });
+
+    const getCity = async (userLatitude, userLongtitude) => {
+      try {
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLatitude}&lon=${userLongtitude}`
+        );
+        const data = await response.json();
+        if (data.address) {
+          setLocation(
+            data.address.city ||
+              data.address.town ||
+              data.address.village ||
+              data.address.country ||
+              'Unknown'
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
   };
   return (
     <Fragment>
@@ -128,7 +149,7 @@ const Home = () => {
             <h3>{samenv}</h3>
             <h3>
               {' '}
-              💨 {wind} KMh Richting: {windDirection}{' '}
+              💨 {wind} Km/h From : {windDirection}{' '}
             </h3>
             <p className='temp'>{currTemp}° </p>
           </div>
