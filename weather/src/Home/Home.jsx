@@ -2,11 +2,13 @@ import React, { Fragment, useEffect, useState, useRef } from 'react';
 import Cloudy from '../assets/cloudy.svg';
 import SlightlyCloudy from '../assets/lightCloudy.svg';
 import CloudyDay from '../assets/cloudy-day-3.svg';
-import CloudyNight from '../assets/cloudy-night-3.svg';
+import CloudyNight from '../assets/cloudy-night-1.svg';
+import CloudyNight2 from '../assets/cloudy-night-3.svg';
 import Day from '../assets/day.svg';
 import Night from '../assets/night.svg';
-import Rain from '../assets/rainy-3.svg';
+import Rain from '../assets/rainy-6.svg';
 import Snow from '../assets/snowy-1.svg';
+import Showers from '../assets/rainy-3.svg';
 import HourCard from '../components/hourCard';
 
 import './Home.css';
@@ -21,6 +23,8 @@ export const imageMap = {
   bewolkt: Cloudy,
   zwaarbewolkt: Cloudy,
   nachtbewolkt: CloudyNight,
+  wolkennacht: CloudyNight2,
+  buien: Showers,
 };
 
 const Home = () => {
@@ -105,7 +109,7 @@ const Home = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       userLatitude.current = position.coords.latitude;
       userLongtitude.current = position.coords.longitude;
-      console.log(location);
+      // console.log(position.coords.latitude, position.coords.longitude);
     });
   };
   return (
@@ -140,12 +144,12 @@ const Home = () => {
 
         <div className='sunInfoContainer'>
           <div className='sunrise'>
-            <h1>☀️</h1>
+            <img src={Day} alt='' />
             <h3>Sunrise</h3>
             <h1>{sunRise}</h1>
           </div>
           <div className='sunrise'>
-            <h1>🌙</h1>
+            <img src={Night} alt='' />
             <h3>Sunset</h3>
             <h1>{sunSet}</h1>
           </div>

@@ -22,12 +22,8 @@ body {
   overflow: hidden;
   box-sizing: border-box;
   margin-top: 0px;
-  background: linear-gradient(240deg, #1e1e42 0%, #3a0ca3 100%);
+  background: linear-gradient(225deg, #232a4a, #1b1f3b);
   gap: 10px;
-  /* background: url('../assets/nightBackground.gif');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center; */
 }
 
 .topBar {
@@ -38,7 +34,7 @@ body {
   align-self: center;
   height: 10%;
   border-radius: 20px;
-  background: rgba(57, 12, 163, 0);
+  background: rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
   margin-top: 10px;
   padding: 5px;
@@ -138,22 +134,6 @@ body {
   text-align: center;
 }
 
-.getLocation {
-  display: flex;
-  position: fixed;
-  width: 35vh;
-  height: 30vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  z-index: 100;
-}
 .sunInfoContainer {
   display: flex;
   flex-direction: column;
@@ -170,7 +150,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
-  background: rgba(58, 12, 163, 0.6);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   width: 90%;
   box-sizing: border-box;
@@ -187,7 +167,7 @@ body {
   gap: 5px;
   align-self: center;
   height: auto;
-  background: rgba(58, 12, 163, 0.6);
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   text-align: center;

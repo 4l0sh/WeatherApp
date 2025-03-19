@@ -28,6 +28,7 @@ const HourCard = ({ latitude, longtitude }) => {
               tempMin: item.min_temp,
               icon: imageMap[item.image],
             }));
+            // console.log('Week Data:', formattedWeekData);
             setWeekData(formattedWeekData);
           }
           // formattedData.forEach((item) => console.log(item.image));
