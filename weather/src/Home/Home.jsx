@@ -35,6 +35,7 @@ const Home = () => {
   const [message, setMessage] = useState('');
   const [alarm, setAlarm] = useState('');
   const [visibility, setVisibility] = useState('');
+  const [windDirection, setWindDirection] = useState('');
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
 
@@ -68,6 +69,7 @@ const Home = () => {
         setMessage(data.liveweer[0].ltekst);
         setAlarm(data.liveweer[0].alarm);
         setVisibility(data.liveweer[0].zicht);
+        setWindDirection(data.liveweer[0].windr);
       });
     });
 
@@ -103,6 +105,7 @@ const Home = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       userLatitude.current = position.coords.latitude;
       userLongtitude.current = position.coords.longitude;
+      console.log(location);
     });
   };
   return (
@@ -119,7 +122,10 @@ const Home = () => {
             <img className='currentWeatherIcon' src={image} alt='Cloud' />
 
             <h3>{samenv}</h3>
-            <h3> 💨 {wind} KMh</h3>
+            <h3>
+              {' '}
+              💨 {wind} KMh Richting: {windDirection}{' '}
+            </h3>
             <p className='temp'>{currTemp}° </p>
           </div>
         </div>
