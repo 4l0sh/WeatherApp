@@ -10,7 +10,14 @@ import Rain from '../assets/rainy-6.svg';
 import Snow from '../assets/snowy-1.svg';
 import Showers from '../assets/rainy-3.svg';
 import HourCard from '../components/hourCard';
-
+import CompassNorth from '../assets/Compass/CompassNorth.png';
+import CompassWest from '../assets/Compass/CompassWest.png';
+import CompassEast from '../assets/Compass/CompassEast.png';
+import CompassSouth from '../assets/Compass/CompassSouth.png';
+import NorthWest from '../assets/Compass/NorthWest.png';
+import NorthEast from '../assets/Compass/NorthEast.png';
+import SouthEast from '../assets/Compass/SouthEast.png';
+import SouthWest from '../assets/Compass/SouthWest.png';
 import './Home.css';
 
 export const imageMap = {
@@ -42,6 +49,20 @@ const Home = () => {
   const [windDirection, setWindDirection] = useState('');
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
+
+  const windDirectionMap = {
+    ZZO: SouthEast,
+    ZO: SouthEast,
+    Z: CompassSouth,
+    ZZW: SouthWest,
+    ZW: SouthWest,
+    O: CompassEast,
+    ONO: NorthEast,
+    N: CompassNorth,
+    NO: NorthWest,
+    NNO: NorthWest,
+    W: CompassWest,
+  };
 
   useEffect(() => {
     const clock = document.getElementById('clock');
@@ -145,13 +166,16 @@ const Home = () => {
         <div className='mainContent'>
           <div className='currentWeather'>
             <img className='currentWeatherIcon' src={image} alt='Cloud' />
-
-            <h3>{samenv}</h3>
-            <h3>
-              {' '}
-              💨 {wind} Km/h From : {windDirection}{' '}
-            </h3>
             <p className='temp'>{currTemp}° </p>
+            <h3>{samenv}</h3>
+            <div className='windInfo'>
+              <h3>💨 {wind} Km/h From :</h3>
+              <img
+                className='compass'
+                src={windDirectionMap[windDirection]}
+                alt='direction'
+              />
+            </div>
           </div>
         </div>
         <div className='Hourly'>
