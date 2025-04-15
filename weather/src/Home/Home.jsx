@@ -18,6 +18,7 @@ import NorthWest from '../assets/Compass/NorthWest.png';
 import NorthEast from '../assets/Compass/NorthEast.png';
 import SouthEast from '../assets/Compass/SouthEast.png';
 import SouthWest from '../assets/Compass/SouthWest.png';
+import LoadingAnimation from '../assets/loadingAnimation2.gif';
 import './Home.css';
 
 export const imageMap = {
@@ -47,10 +48,12 @@ const Home = () => {
   const [alarm, setAlarm] = useState('');
   const [visibility, setVisibility] = useState('');
   const [windDirection, setWindDirection] = useState('');
+  const loading = useRef(false);
   const userLatitude = useRef(0);
   const userLongtitude = useRef(0);
 
   const windDirectionMap = {
+    OZO: SouthEast,
     ZZO: SouthEast,
     ZO: SouthEast,
     Z: CompassSouth,
@@ -75,6 +78,7 @@ const Home = () => {
     };
     updateClock();
     setInterval(updateClock, 1000);
+    loading.current = true;
 
     fetch(
       `https://weerlive.nl/api/weerlive_api_v2.php?key=${import.meta.env.VITE_WEATHER_APP_API_KEY}&locatie=${userLatitude.current},${userLongtitude.current}`,
@@ -95,6 +99,7 @@ const Home = () => {
         setAlarm(data.liveweer[0].alarm);
         setVisibility(data.liveweer[0].zicht);
         setWindDirection(data.liveweer[0].windr);
+        console.log(data.liveweer[0].windr);
       });
     });
 
@@ -149,6 +154,7 @@ const Home = () => {
               'Unknown'
           );
         }
+        loading.current = false;
       } catch (error) {
         console.log(error);
       }
@@ -158,8 +164,17 @@ const Home = () => {
     <Fragment>
       <div className='homeContainer'>
         <div className='topBar'>
-          <h1 className='location'>📌 {location}</h1>
-          <h1 className='location' id='clock'>
+          <h1 className='locationName'>📌 {location}</h1>
+          <div className='loading'>
+            {loading.current && (
+              <img
+                className='loadingIcon'
+                src={LoadingAnimation}
+                alt='Loading...'
+              />
+            )}
+          </div>
+          <h1 className='clock' id='clock'>
             11:30
           </h1>
         </div>
